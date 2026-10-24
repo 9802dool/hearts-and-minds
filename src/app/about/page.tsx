@@ -21,7 +21,7 @@ export default function AboutPage() {
       <FadeIn className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:px-6">
         <Image
           src="/images/about-community.jpg"
-          alt="Placeholder for officers and residents together."
+          alt="Residents and Hearts and Minds gathered indoors for a community meeting."
           width={1400}
           height={900}
           className="h-auto w-full rounded-3xl object-cover"
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <section className="bg-hm-blue-light">
         <div className="mx-auto max-w-6xl px-5 py-16 md:px-6">
           <h2 className="font-display text-3xl font-bold text-hm-blue">Leadership</h2>
-          <p className="mt-3 max-w-2xl text-hm-muted">Titles are in place. Replace each portrait and add the officer’s name in content/leadership.ts.</p>
+          <p className="mt-3 max-w-2xl text-hm-muted">The photographs are from Hearts &amp; Minds activities. Add each officer’s name and portrait in content/leadership.ts when you are ready to publish them.</p>
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {leaders.map((leader) => (
               <li key={`${leader.role}-${leader.team}`} className="overflow-hidden rounded-3xl bg-white">

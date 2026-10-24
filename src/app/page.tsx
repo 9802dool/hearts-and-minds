@@ -20,13 +20,13 @@ export default function Home() {
       <section className="relative min-h-[88svh] bg-hm-blue text-white">
         <Image
           src="/images/hero.jpg"
-          alt="Placeholder for an aerial photograph of Port of Spain or a community gathering."
+          alt="A view over Port of Spain from the hills, the cover photograph from the Hearts and Minds Facebook page."
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-hm-blue/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-hm-blue via-hm-blue/75 to-hm-blue/35" />
         <div className="relative mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-5 pt-28 pb-16 md:px-6">
           <p className="text-sm font-bold tracking-[0.18em] uppercase">Hearts & Minds Programme</p>
           <h1 className="mt-4 max-w-3xl font-display text-4xl leading-tight font-extrabold md:text-6xl">{site.tagline}</h1>
