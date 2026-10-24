@@ -10,7 +10,7 @@ export function TestimonialSlider() {
 
   return (
     <figure className="mx-auto max-w-3xl text-center">
-      <blockquote className="font-display text-2xl leading-snug font-semibold text-hm-blue md:text-4xl">
+      <blockquote className="font-display text-xl leading-snug font-semibold text-balance text-hm-blue sm:text-2xl md:text-4xl">
         “{item.quote}”
       </blockquote>
       <figcaption className="mt-6 text-sm font-semibold text-hm-muted">{item.credit}</figcaption>

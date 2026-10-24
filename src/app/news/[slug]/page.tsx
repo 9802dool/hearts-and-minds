@@ -43,7 +43,7 @@ async function Article({ params }: { params: Promise<{ slug: string }> }) {
         <Image src={post.cover} alt={post.coverAlt} fill priority sizes="100vw" className="object-cover opacity-60" />
         <div className="relative mx-auto flex min-h-[46vh] max-w-3xl flex-col justify-end px-5 py-12 text-white md:px-6">
           <p className="text-sm font-bold tracking-wide uppercase">{post.category}</p>
-          <h1 className="mt-2 font-display text-4xl font-extrabold md:text-5xl">{post.title}</h1>
+          <h1 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl md:text-5xl">{post.title}</h1>
           <p className="mt-3 text-sm">{formatDate(post.date)}</p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import { site, siteUrl } from "@content/site";
 import { Footer } from "@/components/footer";
@@ -18,6 +18,12 @@ const sans = Inter({
 });
 
 const url = siteUrl();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -71,7 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <Header />
-        <main id="content" className="flex-1">
+        <main id="content" className="min-w-0 flex-1">
           {children}
         </main>
         <Footer />

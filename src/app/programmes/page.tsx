@@ -12,9 +12,9 @@ export default function ProgrammesPage() {
   return (
     <section className="bg-hm-blue-light px-5 py-16 md:px-6">
       <div className="mx-auto max-w-6xl">
-        <h1 className="font-display text-4xl font-extrabold text-hm-blue md:text-5xl">Our programmes</h1>
+        <h1 className="font-display text-3xl font-extrabold text-hm-blue sm:text-4xl md:text-5xl">Our programmes</h1>
         <p className="mt-4 max-w-2xl text-lg text-hm-muted">Six ways Hearts & Minds shows up. Open a card for the detail.</p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {programmes.map((programme) => (
             <Link key={programme.slug} href={`/programmes/${programme.slug}`} className="overflow-hidden rounded-3xl bg-white shadow-sm">
               <Image src={programme.image} alt={programme.imageAlt} width={1200} height={900} className="aspect-[16/9] w-full object-cover" />

@@ -4,8 +4,8 @@ import { site } from "@content/site";
 export function Footer() {
   return (
     <footer className="bg-hm-blue-dark text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4 md:px-6">
-        <div className="md:col-span-2">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+        <div className="sm:col-span-2">
           <p className="font-display text-xl font-bold">Hearts & Minds Programme</p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/85">{site.tagline}</p>
           <p className="mt-4 text-sm text-white/75">{site.parent}</p>

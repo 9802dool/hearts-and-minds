@@ -95,7 +95,7 @@ export function EnquiryForm({
         Website
         <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
       </label>
-      <button className={buttonClass} disabled={pending}>
+      <button className={`${buttonClass} w-full sm:w-auto`} disabled={pending}>
         {pending ? "Sending…" : submitLabel}
       </button>
       {notice ? <p className="text-sm leading-relaxed text-hm-muted">{notice}</p> : null}

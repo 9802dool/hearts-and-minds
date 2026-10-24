@@ -20,7 +20,7 @@ export default function GetInvolvedPage() {
       <section className="bg-hm-blue px-5 py-16 text-white md:px-6">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-bold tracking-[0.18em] uppercase">Get involved</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold md:text-6xl">There is a place for you in this work.</h1>
+          <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold sm:text-4xl md:text-6xl">There is a place for you in this work.</h1>
           <p className="mt-4 max-w-2xl text-white/85">
             Call {site.phoneDisplay} if a form is easier by phone. For emergencies call 999 or 911.
           </p>

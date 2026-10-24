@@ -38,7 +38,7 @@ export default function EventsPage() {
     <section className="bg-hm-blue-light px-5 py-16 md:px-6">
       <JsonLd data={structured} />
       <div className="mx-auto max-w-6xl">
-        <h1 className="font-display text-4xl font-extrabold text-hm-blue md:text-5xl">Events</h1>
+        <h1 className="font-display text-3xl font-extrabold text-hm-blue sm:text-4xl md:text-5xl">Events</h1>
         <p className="mt-4 max-w-2xl text-lg text-hm-muted">
           Future dates on this starter calendar are samples. Register sends a request to the programme office.
         </p>

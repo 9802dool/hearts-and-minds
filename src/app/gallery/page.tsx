@@ -11,7 +11,7 @@ export default function GalleryPage() {
   return (
     <section className="bg-hm-blue-light px-5 py-16 md:px-6">
       <div className="mx-auto max-w-6xl">
-        <h1 className="font-display text-4xl font-extrabold text-hm-blue md:text-5xl">Gallery</h1>
+        <h1 className="font-display text-3xl font-extrabold text-hm-blue sm:text-4xl md:text-5xl">Gallery</h1>
         <p className="mt-4 max-w-2xl text-lg text-hm-muted">
           Every photograph here is a labelled placeholder. Swap the files in public/images, and add a YouTube id or Facebook Reel URL in content/gallery.ts for the video card.
         </p>

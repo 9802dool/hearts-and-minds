@@ -14,7 +14,7 @@ export function EventBoard({ upcoming, past }: { upcoming: CommunityEvent[]; pas
 
   return (
     <div>
-      <div className="mb-8 flex gap-2" role="group" aria-label="Event list">
+      <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Event list">
         {(["upcoming", "past"] as const).map((key) => (
           <button
             key={key}
@@ -25,7 +25,7 @@ export function EventBoard({ upcoming, past }: { upcoming: CommunityEvent[]; pas
           </button>
         ))}
       </div>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         {list.length === 0 ? <p className="text-hm-muted">Nothing in this list yet. Add a date in content/events.ts.</p> : null}
         {list.map((event) => (
           <article key={event.slug} className="overflow-hidden rounded-3xl bg-white shadow-sm">

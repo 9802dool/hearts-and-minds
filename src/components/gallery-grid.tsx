@@ -12,7 +12,7 @@ export function GalleryGrid({ items }: { items: GalleryItem[] }) {
 
   return (
     <div>
-      <div className="mb-8 flex gap-2 overflow-x-auto pb-2">
+      <div className="mb-8 flex max-w-full gap-2 overflow-x-auto pb-2">
         {(["All", ...albums] as const).map((name) => (
           <button
             key={name}

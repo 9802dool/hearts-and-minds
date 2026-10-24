@@ -17,7 +17,7 @@ export default function ContactPage() {
       </section>
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:px-6 lg:grid-cols-2">
         <div>
-          <h1 className="font-display text-4xl font-extrabold text-hm-blue md:text-5xl">Contact</h1>
+          <h1 className="font-display text-3xl font-extrabold text-hm-blue sm:text-4xl md:text-5xl">Contact</h1>
           <address className="mt-6 space-y-3 text-lg not-italic">
             <p>
               {site.address.street}
@@ -32,7 +32,7 @@ export default function ContactPage() {
               </a>
             </p>
             <p>
-              <a className="font-semibold text-hm-blue underline" href={`mailto:${site.email}`}>
+              <a className="font-semibold break-all text-hm-blue underline" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </p>

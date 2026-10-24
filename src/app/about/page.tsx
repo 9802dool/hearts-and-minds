@@ -15,7 +15,7 @@ export default function AboutPage() {
       <section className="bg-hm-blue px-5 py-16 text-white md:px-6">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-bold tracking-[0.18em] uppercase">About</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl font-extrabold md:text-6xl">Police and community, working together.</h1>
+          <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold sm:text-4xl md:text-6xl">Police and community, working together.</h1>
         </div>
       </section>
       <FadeIn className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:px-6">

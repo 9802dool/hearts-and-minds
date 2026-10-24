@@ -29,6 +29,13 @@ body {
   background: var(--hm-white);
   color: var(--hm-ink);
   font-family: var(--font-sans);
+  overflow-wrap: break-word;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
 }
 
 ::selection {

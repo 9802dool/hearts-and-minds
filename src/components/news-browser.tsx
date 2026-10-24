@@ -12,7 +12,7 @@ export function NewsBrowser({ posts }: { posts: NewsPost[] }) {
 
   return (
     <div>
-      <div className="mb-8 flex gap-2 overflow-x-auto pb-2">
+      <div className="mb-8 flex max-w-full gap-2 overflow-x-auto pb-2">
         {(["All", ...newsCategories] as const).map((name) => (
           <button
             key={name}
@@ -23,7 +23,7 @@ export function NewsBrowser({ posts }: { posts: NewsPost[] }) {
           </button>
         ))}
       </div>
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((post) => (
           <article key={post.slug} className="overflow-hidden rounded-3xl bg-white shadow-sm">
             <Link href={`/news/${post.slug}`}>
