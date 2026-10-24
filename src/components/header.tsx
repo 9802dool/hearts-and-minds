@@ -25,7 +25,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:h-20 md:px-6">
         <Link href="/" className="flex min-w-0 items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="" className="h-10 w-10 rounded-lg" />
+          <img src="/logo.jpg" alt="" className="h-12 w-auto shrink-0 md:h-14" />
           <span className="leading-tight">
             <span className="block font-display text-sm font-bold tracking-wide md:text-base">Hearts & Minds</span>
             <span className="block text-xs text-white/80">Programme</span>

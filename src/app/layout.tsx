@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     url,
   },
-  icons: { icon: "/logo.svg" },
+  icons: { icon: "/logo.jpg" },
 };
 
 const structuredData = {
