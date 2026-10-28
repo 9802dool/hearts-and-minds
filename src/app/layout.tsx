@@ -1,20 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Newsreader, Source_Sans_3 } from "next/font/google";
 import { site, siteUrl } from "@content/site";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { JsonLd } from "@/lib/seo";
 import "./globals.css";
 
-const display = Montserrat({
+const display = Newsreader({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-montserrat",
+  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
+  variable: "--font-newsreader",
+  display: "swap",
 });
 
-const sans = Inter({
+const sans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "600", "700"],
+  variable: "--font-source",
+  display: "swap",
 });
 
 const url = siteUrl();
@@ -28,7 +32,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: `${site.name} · IATF`,
+    default: `${site.name} · ${site.parent}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -39,41 +43,35 @@ export const metadata: Metadata = {
     type: "website",
     url,
   },
-  icons: { icon: "/logo.jpg" },
+  icons: { icon: "/images/icon-512.png" },
 };
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "NGO",
+  "@type": "Organization",
   name: site.name,
-  alternateName: site.shortName,
+  alternateName: ["HMP", "Hearts & Minds Programme"],
   slogan: site.tagline,
   url,
-  email: site.email,
-  telephone: site.phoneTel,
+  description: site.description,
+  foundingDate: "2006-05-15",
   parentOrganization: {
     "@type": "GovernmentOrganization",
     name: site.parent,
   },
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address.street,
-    addressLocality: site.address.locality,
-    addressCountry: "TT",
-  },
-  areaServed: site.communities,
+  areaServed: [
+    { "@type": "Place", name: "East Port of Spain" },
+    { "@type": "Place", name: "Laventille" },
+  ],
   sameAs: [site.facebook],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} h-full scroll-smooth antialiased`}>
-      <body className="flex min-h-full flex-col bg-white font-sans text-hm-ink">
+      <body className="flex min-h-full flex-col bg-hm-paper font-sans text-hm-ink">
         <JsonLd data={structuredData} />
-        <a
-          href="#content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-hm-red focus:px-4 focus:py-2 focus:font-bold focus:text-white"
-        >
+        <a href="#content" className="skip-link">
           Skip to content
         </a>
         <Header />

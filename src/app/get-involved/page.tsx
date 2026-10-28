@@ -1,83 +1,33 @@
 import type { Metadata } from "next";
-import { programmes } from "@content/programmes";
-import { site } from "@content/site";
+import { partners, nextChapter } from "@content/story";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { PageIntro } from "@/components/page-intro";
+import { ChapterPager } from "@/components/pager";
 
 export const metadata: Metadata = {
-  title: "Get Involved",
-  description: "Volunteer, mentor, partner, or ask Hearts & Minds to bring a programme to your school or community.",
+  title: "Get involved",
+  description: "Sponsor a youth, sport, education or relief initiative, contribute skills or equipment, or partner for the long term.",
 };
-
-const person = [
-  { name: "name", label: "Name", required: true },
-  { name: "phone", label: "Phone", required: true },
-  { name: "email", label: "Email", type: "email", required: true },
-];
 
 export default function GetInvolvedPage() {
   return (
     <>
-      <section className="bg-hm-blue px-5 py-16 text-white md:px-6">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-bold tracking-[0.18em] uppercase">Get involved</p>
-          <h1 className="mt-3 max-w-3xl font-display text-3xl font-extrabold sm:text-4xl md:text-6xl">There is a place for you in this work.</h1>
-          <p className="mt-4 max-w-2xl text-white/85">
-            Call {site.phoneDisplay} if a form is easier by phone. For emergencies call 999 or 911.
-          </p>
+      <PageIntro kicker={nextChapter.kicker} title={nextChapter.title} lede={partners.funding} />
+      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <h2 className="font-display text-3xl font-medium text-hm-navy">Three ways to help</h2>
+          <ol className="mt-6 space-y-6">
+            {nextChapter.asks.map((ask) => (
+              <li key={ask.title} className="border-t border-hm-line pt-4">
+                <h3 className="font-display text-2xl text-hm-navy">{ask.title}</h3>
+                <p className="mt-2 leading-relaxed text-pretty text-hm-muted">{ask.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
+        <EnquiryForm />
       </section>
-      <section className="bg-hm-blue-light px-5 py-16 md:px-6">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-          <EnquiryForm
-            form="volunteer"
-            title="Volunteer"
-            submitLabel="Offer to volunteer"
-            fields={[
-              ...person,
-              { name: "interest", label: "Where would you like to help?", required: true },
-              { name: "message", label: "Anything we should know?", type: "textarea" },
-            ]}
-          />
-          <EnquiryForm
-            form="mentor"
-            title="Mentor"
-            submitLabel="Offer to mentor"
-            fields={[
-              ...person,
-              { name: "expertise", label: "What can you share with a young person?", required: true },
-              { name: "availability", label: "When are you free?", required: true },
-            ]}
-          />
-          <EnquiryForm
-            form="partner"
-            title="Partner or sponsor"
-            submitLabel="Send an enquiry"
-            fields={[
-              ...person,
-              { name: "organisation", label: "Organisation", required: true },
-              { name: "message", label: "How would you like to partner?", type: "textarea", required: true },
-            ]}
-          />
-          <div id="request">
-            <EnquiryForm
-              form="request"
-              title="Request a programme"
-              submitLabel="Request a visit"
-              fields={[
-                ...person,
-                { name: "organisation", label: "School or community", required: true },
-                {
-                  name: "programme",
-                  label: "Programme",
-                  required: true,
-                  options: programmes.map((programme) => programme.name),
-                },
-                { name: "message", label: "Tell us about the group", type: "textarea", required: true },
-              ]}
-            />
-          </div>
-        </div>
-      </section>
+      <ChapterPager href="/get-involved" />
     </>
   );
 }

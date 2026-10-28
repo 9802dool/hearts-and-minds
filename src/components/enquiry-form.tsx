@@ -2,31 +2,29 @@
 
 import { useState } from "react";
 import { site } from "@content/site";
-import { fieldClass, buttonClass } from "@/components/brand";
+import { supportFocus, supportIntents } from "@content/story";
+import { buttonClass, fieldClass } from "@/components/brand";
 
 type Field = {
   name: string;
   label: string;
   type?: string;
   required?: boolean;
-  options?: string[];
+  options?: readonly string[];
+  autoComplete?: string;
 };
 
-export function EnquiryForm({
-  form,
-  title,
-  fields,
-  hidden,
-  submitLabel = "Send",
-  titleId,
-}: {
-  form: string;
-  title: string;
-  fields: Field[];
-  hidden?: Record<string, string>;
-  submitLabel?: string;
-  titleId?: string;
-}) {
+const fields: Field[] = [
+  { name: "name", label: "Name", required: true, autoComplete: "name" },
+  { name: "email", label: "Email", type: "email", required: true, autoComplete: "email" },
+  { name: "phone", label: "Phone", type: "tel", autoComplete: "tel" },
+  { name: "organisation", label: "Organisation", autoComplete: "organization" },
+  { name: "intent", label: "I would like to", required: true, options: supportIntents },
+  { name: "focus", label: "Area of the programme", required: true, options: supportFocus },
+  { name: "message", label: "Message", type: "textarea", required: true },
+];
+
+export function EnquiryForm() {
   const [pending, setPending] = useState(false);
   const [notice, setNotice] = useState("");
   const [errors, setErrors] = useState<Record<string, string[] | undefined>>({});
@@ -38,67 +36,116 @@ export function EnquiryForm({
     setNotice("");
     setErrors({});
     const data = new FormData(formEl);
-    const payload: Record<string, string> = { form };
+    const payload: Record<string, string> = { form: "support" };
     data.forEach((value, key) => {
       payload[key] = String(value);
     });
-    const response = await fetch("/api/forms", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = (await response.json()) as { ok?: boolean; emailed?: boolean; errors?: Record<string, string[]> };
-    setPending(false);
-    if (!response.ok || !result.ok) {
-      setErrors(result.errors ?? {});
-      setNotice("Check the form and try again.");
-      return;
+
+    try {
+      const response = await fetch("/api/forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = (await response.json()) as { ok?: boolean; emailed?: boolean; errors?: Record<string, string[]> };
+      if (!response.ok || !result.ok) {
+        setErrors(result.errors ?? {});
+        setNotice("Check the form and try again.");
+        return;
+      }
+      formEl.reset();
+      setNotice(
+        result.emailed === false
+          ? `Thank you. Email from this form is not switched on yet, so please also write through the Hearts and Minds Facebook page.`
+          : "Thank you. Your message has been sent to the Hearts and Minds Programme.",
+      );
+    } catch {
+      setNotice("The message could not be sent. Please try again, or use the Facebook page.");
+    } finally {
+      setPending(false);
     }
-    formEl.reset();
-    setNotice(
-      result.emailed === false
-        ? `We saved your note on this screen only. Email is not switched on yet, so please call ${site.phoneDisplay} or write to ${site.email}.`
-        : "Thank you. Someone from Hearts & Minds will be in touch.",
-    );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-3xl bg-white p-5 shadow-sm md:p-7" noValidate>
-      <h3 id={titleId} className="font-display text-2xl font-bold text-hm-blue">{title}</h3>
-      {hidden
-        ? Object.entries(hidden).map(([key, value]) => <input key={key} type="hidden" name={key} value={value} />)
-        : null}
-      {fields.map((field) => (
-        <label key={field.name} className="block text-sm font-semibold">
-          {field.label}
-          {field.options ? (
-            <select name={field.name} required={field.required} className={`${fieldClass} mt-1`}>
-              <option value="">Choose one</option>
-              {field.options.map((option) => (
-                <option key={option}>{option}</option>
-              ))}
-            </select>
-          ) : field.type === "textarea" ? (
-            <textarea name={field.name} required={field.required} rows={5} className={`${fieldClass} mt-1`} />
-          ) : (
-            <input
-              name={field.name}
-              type={field.type ?? "text"}
-              required={field.required}
-              className={`${fieldClass} mt-1`}
-            />
-          )}
-          {errors[field.name] ? <span className="mt-1 block font-medium text-hm-red">{errors[field.name]?.[0]}</span> : null}
-        </label>
-      ))}
-      <label className="absolute -left-[9999px]" aria-hidden="true">
-        Website
-        <input name="companyWebsite" tabIndex={-1} autoComplete="off" />
-      </label>
-      <button className={`${buttonClass} w-full sm:w-auto`} disabled={pending}>
-        {pending ? "Sending…" : submitLabel}
+    <form onSubmit={onSubmit} className="relative space-y-5 rounded-md border border-hm-line bg-white p-5 sm:p-7" noValidate>
+      <div>
+        <h2 className="font-display text-3xl font-medium text-hm-navy">Write to the programme</h2>
+        <p className="mt-2 text-sm leading-relaxed text-hm-muted">
+          Tell us whether you want to sponsor, contribute or partner. {site.emergency}
+        </p>
+      </div>
+      {fields.map((field) => {
+        const id = `support-${field.name}`;
+        const errorId = `${id}-error`;
+        const error = errors[field.name]?.[0];
+        return (
+          <div key={field.name}>
+            <label htmlFor={id} className="block text-sm font-semibold">
+              {field.label}
+              {field.required ? (
+                <>
+                  <span aria-hidden="true"> *</span>
+                  <span className="sr-only"> required</span>
+                </>
+              ) : null}
+            </label>
+            {field.options ? (
+              <select
+                id={id}
+                name={field.name}
+                required={field.required}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? errorId : undefined}
+                className={`${fieldClass} mt-1`}
+                defaultValue=""
+              >
+                <option value="">Choose one</option>
+                {field.options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            ) : field.type === "textarea" ? (
+              <textarea
+                id={id}
+                name={field.name}
+                required={field.required}
+                rows={6}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? errorId : undefined}
+                className={`${fieldClass} mt-1`}
+              />
+            ) : (
+              <input
+                id={id}
+                name={field.name}
+                type={field.type ?? "text"}
+                required={field.required}
+                autoComplete={field.autoComplete}
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? errorId : undefined}
+                className={`${fieldClass} mt-1`}
+              />
+            )}
+            {error ? (
+              <p id={errorId} className="mt-1 text-sm font-medium text-hm-red">
+                {error}
+              </p>
+            ) : null}
+          </div>
+        );
+      })}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="support-company">Company website</label>
+        <input id="support-company" name="companyWebsite" tabIndex={-1} autoComplete="off" />
+      </div>
+      <button type="submit" className={`${buttonClass} w-full sm:w-auto`} disabled={pending}>
+        {pending ? "Sending…" : "Send message"}
       </button>
-      {notice ? <p className="text-sm leading-relaxed text-hm-muted">{notice}</p> : null}
+      <p role="status" className="text-sm leading-relaxed text-hm-muted">
+        {notice}
+      </p>
     </form>
   );
 }
