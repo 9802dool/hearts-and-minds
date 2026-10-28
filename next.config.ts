@@ -11,10 +11,10 @@ const nextConfig: NextConfig = {
       { source: "/events", destination: "/programmes", permanent: false },
       { source: "/gallery", destination: "/", permanent: false },
       { source: "/programmes/youth-sports", destination: "/sport", permanent: false },
-      { source: "/programmes/school-leadership", destination: "/programmes/pycc", permanent: false },
+      { source: "/programmes/school-leadership", destination: "/initiatives#pycc", permanent: false },
       { source: "/programmes/community-library", destination: "/community", permanent: false },
       { source: "/programmes/community-engagement", destination: "/about", permanent: false },
-      { source: "/programmes/youth-achievement", destination: "/programmes/aspiring-stars", permanent: false },
+      { source: "/programmes/youth-achievement", destination: "/initiatives#aspiring-stars", permanent: false },
       { source: "/programmes/regional-exchange", destination: "/", permanent: false },
     ];
   },

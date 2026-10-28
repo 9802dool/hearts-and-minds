@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ChapterPager } from "@/components/pager";
-import { FlagshipSection, WorkSection } from "@/components/sections";
+import { WorkSection } from "@/components/sections";
 
 export const metadata: Metadata = {
   title: "Programmes",
@@ -11,7 +11,6 @@ export default function ProgrammesPage() {
   return (
     <>
       <WorkSection heading="h1" />
-      <FlagshipSection />
       <ChapterPager href="/programmes" />
     </>
   );

@@ -5,7 +5,7 @@ import { ContactDetails } from "@/components/contact-details";
 
 export function Footer() {
   return (
-    <footer className="bg-hm-navy text-white">
+    <footer className="bg-hm-navy-2 text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <Image

@@ -77,7 +77,7 @@ const structuredData = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} h-full scroll-smooth antialiased`}>
-      <body className="flex min-h-full flex-col bg-hm-paper font-sans text-hm-ink">
+      <body className="flex min-h-full flex-col bg-white font-sans text-hm-ink">
         <JsonLd data={structuredData} />
         <a href="#content" className="skip-link">
           Skip to content

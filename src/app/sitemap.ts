@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@content/site";
-import { flagships } from "@content/story";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const root = siteUrl();
@@ -8,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/programmes",
+    "/initiatives",
     "/education",
     "/youth",
     "/impact",
@@ -22,12 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...paths.map((path) => ({
       url: `${root}${path}`,
       changeFrequency: "monthly" as const,
-      priority: path === "" ? 1 : 0.7,
-    })),
-    ...flagships.map((item) => ({
-      url: `${root}/programmes/${item.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
+      priority: path === "" ? 1 : path === "/initiatives" ? 0.8 : 0.7,
     })),
   ];
 }

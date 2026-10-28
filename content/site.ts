@@ -26,6 +26,7 @@ export const site = {
   nav: [
     { href: "/about", label: "About" },
     { href: "/programmes", label: "Programmes" },
+    { href: "/initiatives", label: "Initiatives" },
     { href: "/education", label: "Education" },
     { href: "/youth", label: "Youth clubs" },
     { href: "/impact", label: "Impact" },

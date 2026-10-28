@@ -198,15 +198,17 @@ export const relief = {
   items: [
     {
       title: "Free medical clinics",
-      text: "Missionary doctors and church partners serve residents twice a year.",
+      text: "Clinics are held twice a year.",
+      href: "/initiatives#medical-clinic",
     },
     {
       title: "Operation Rebuild Homes",
-      text: "Prefabricated homes support families who lose their housing through disaster.",
+      text: "Prefabricated homes for families after a disaster.",
+      href: "/initiatives#operation-rebuild",
     },
     {
       title: "Food and learning access",
-      text: "Hampers brought relief during the pandemic. More than 500 children received devices for online learning.",
+      text: "Hampers brought relief during the pandemic, and devices were provided for online learning.",
     },
     {
       title: "Project All agriculture",
@@ -334,17 +336,17 @@ export const nextChapter = {
 };
 
 export const homeContents = [
-  { href: "/#why", label: "Why we exist", note: "Origin, purpose and the 54 communities" },
-  { href: "/#how", label: "How we work", note: "Listen, connect and act" },
-  { href: "/#work", label: "What we do", note: "Seven kinds of community support" },
-  { href: "/#flagships", label: "Flagship initiatives", note: "Ten programmes, from Carnival to housing" },
-  { href: "/#education", label: "Education reach", note: "48 schools and learning centres" },
-  { href: "/#youth", label: "Youth clubs", note: "Three Police Youth Clubs" },
-  { href: "/#impact", label: "Proof of possibility", note: "National and international stages" },
-  { href: "/#relief", label: "Relief and resilience", note: "Health, housing, food and learning" },
-  { href: "/#sport", label: "Sport as a bridge", note: "Tournaments, clinics and pathways" },
-  { href: "/#intervention", label: "Early intervention", note: "School, home and parenting support" },
-  { href: "/#community", label: "Community centre", note: "The Beetham Gardens JCSC" },
-  { href: "/#partners", label: "Partnership", note: "Who stands with the work, and how it is funded" },
-  { href: "/#next", label: "The next chapter", note: "Sponsor, contribute or partner" },
+  { href: "/about#why", label: "Why we exist", note: "Origin, purpose and the 54 communities" },
+  { href: "/about#how", label: "How we work", note: "Listen, connect and act" },
+  { href: "/programmes", label: "What we do", note: "Seven kinds of community support" },
+  { href: "/initiatives", label: "Flagship initiatives", note: "Ten programmes, from Carnival to housing" },
+  { href: "/education", label: "Education reach", note: "48 schools and learning centres" },
+  { href: "/youth", label: "Youth clubs", note: "Three Police Youth Clubs" },
+  { href: "/impact", label: "Proof of possibility", note: "National and international stages" },
+  { href: "/relief", label: "Relief and resilience", note: "Health, housing, food and learning" },
+  { href: "/sport", label: "Sport as a bridge", note: "Tournaments, clinics and pathways" },
+  { href: "/intervention", label: "Early intervention", note: "School, home and parenting support" },
+  { href: "/community", label: "Community centre", note: "The Beetham Gardens JCSC" },
+  { href: "/partners", label: "Partnership", note: "Who stands with the work, and how it is funded" },
+  { href: "/get-involved", label: "The next chapter", note: "Sponsor, contribute or partner" },
 ];

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function YouthPage() {
   return (
     <>
-      <YouthSection heading="h1" notes="full" />
+      <YouthSection heading="h1" />
       <ChapterPager href="/youth" />
     </>
   );
