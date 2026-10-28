@@ -13,14 +13,20 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          background: "#1D4C92",
-          color: "#FFFFFF",
+          background: "#101820",
+          color: "#f6f3ee",
           padding: "72px",
         }}
       >
-        <div style={{ width: 88, height: 12, background: "#EB1112", marginBottom: 28 }} />
-        <div style={{ fontSize: 64, fontWeight: 800, lineHeight: 1.1 }}>Hearts & Minds Programme</div>
-        <div style={{ fontSize: 28, marginTop: 20 }}>Changing Hearts & Minds To Form Better Communities.</div>
+        <div style={{ fontSize: 22, letterSpacing: "0.18em", textTransform: "uppercase", color: "#c8102e" }}>
+          Inter Agency Task Force
+        </div>
+        <div style={{ fontSize: 68, fontWeight: 600, lineHeight: 1.05, marginTop: 20, maxWidth: 900 }}>
+          Hearts and Minds Programme
+        </div>
+        <div style={{ fontSize: 28, marginTop: 24, maxWidth: 820 }}>
+          Community policing in East Port of Spain and Laventille. Initiated 15 May 2006.
+        </div>
       </div>
     ),
     { ...size },

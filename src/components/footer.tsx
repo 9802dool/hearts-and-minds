@@ -1,21 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@content/site";
+import { ContactDetails } from "@/components/contact-details";
 
 export function Footer() {
   return (
-    <footer className="bg-hm-blue-dark text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
-        <div className="sm:col-span-2">
-          <p className="font-display text-xl font-bold">Hearts & Minds Programme</p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/85">{site.tagline}</p>
-          <p className="mt-4 text-sm text-white/75">{site.parent}</p>
+    <footer className="bg-hm-navy text-white">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <Image
+            src="/images/logo-mark.webp"
+            alt="Hearts and Minds Programme"
+            width={640}
+            height={305}
+            className="h-16 w-auto"
+            style={{ width: "auto" }}
+          />
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/80">{site.tagline}</p>
+          <p className="mt-4 text-sm text-white/70">
+            {site.parent}
+            <br />
+            Initiated {site.initiated}
+          </p>
         </div>
         <div>
-          <p className="text-xs font-bold tracking-[0.18em] text-white/70 uppercase">Visit</p>
+          <p className="text-xs font-semibold tracking-[0.18em] text-white/60 uppercase">The programme</p>
           <ul className="mt-4 space-y-2 text-sm">
             {site.nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:underline">
+                <Link href={item.href} className="underline decoration-white/30 underline-offset-4 hover:decoration-white">
                   {item.label}
                 </Link>
               </li>
@@ -23,32 +36,12 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-xs font-bold tracking-[0.18em] text-white/70 uppercase">Contact</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>{site.address.street}</li>
-            <li>
-              {site.address.locality}, {site.address.country}
-            </li>
-            <li>
-              <a href={`tel:${site.phoneTel}`} className="font-semibold hover:underline">
-                {site.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`} className="break-all hover:underline">
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <a href={site.facebook} className="hover:underline" target="_blank" rel="noreferrer">
-                Facebook
-              </a>
-            </li>
-          </ul>
+          <p className="text-xs font-semibold tracking-[0.18em] text-white/60 uppercase">Contact</p>
+          <div className="mt-4">
+            <ContactDetails />
+          </div>
+          <p className="mt-6 text-sm leading-relaxed text-white/75">{site.emergency}</p>
         </div>
-      </div>
-      <div className="border-t border-white/15">
-        <p className="mx-auto max-w-6xl px-5 py-4 text-sm text-white/80 md:px-6">{site.emergency}</p>
       </div>
     </footer>
   );

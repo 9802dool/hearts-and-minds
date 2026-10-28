@@ -1,64 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --hm-blue: #1d4c92;
-  --hm-blue-dark: #133567;
-  --hm-blue-light: #e8eef7;
-  --hm-red: #eb1112;
-  --hm-red-dark: #c10d0e;
-  --hm-white: #ffffff;
-  --hm-ink: #1a1a2e;
-  --hm-muted: #3d4663;
+  --hm-ink: #141c27;
+  --hm-muted: #3e4a5c;
+  --hm-paper: #f6f3ee;
+  --hm-paper-deep: #efe8df;
+  --hm-line: #ddd6cb;
+  --hm-red: #c8102e;
+  --hm-red-dark: #9d1024;
+  --hm-navy: #101820;
+  --hm-navy-2: #1a2633;
   color-scheme: light;
 }
 
 @theme inline {
-  --color-hm-blue: var(--hm-blue);
-  --color-hm-blue-dark: var(--hm-blue-dark);
-  --color-hm-blue-light: var(--hm-blue-light);
-  --color-hm-red: var(--hm-red);
-  --color-hm-red-dark: var(--hm-red-dark);
-  --color-hm-white: var(--hm-white);
   --color-hm-ink: var(--hm-ink);
   --color-hm-muted: var(--hm-muted);
-  --font-sans: var(--font-inter), "Segoe UI", sans-serif;
-  --font-display: var(--font-montserrat), "Segoe UI", sans-serif;
+  --color-hm-paper: var(--hm-paper);
+  --color-hm-paper-deep: var(--hm-paper-deep);
+  --color-hm-line: var(--hm-line);
+  --color-hm-red: var(--hm-red);
+  --color-hm-red-dark: var(--hm-red-dark);
+  --color-hm-navy: var(--hm-navy);
+  --color-hm-navy-2: var(--hm-navy-2);
+  --font-sans: var(--font-source), "Segoe UI", sans-serif;
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
 }
 
 body {
-  background: var(--hm-white);
+  background: var(--hm-paper);
   color: var(--hm-ink);
   font-family: var(--font-sans);
   overflow-wrap: break-word;
-}
-
-img,
-video,
-iframe {
-  max-width: 100%;
+  overflow-x: clip;
 }
 
 ::selection {
-  background: #1d4c92;
-  color: #ffffff;
+  background: #101820;
+  color: #f6f3ee;
 }
 
 :focus-visible {
-  outline: 3px solid #eb1112;
+  outline: 3px solid #c8102e;
   outline-offset: 3px;
 }
 
-dialog {
-  max-width: min(1100px, calc(100vw - 2rem));
-  width: 100%;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: inherit;
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 60;
+  transform: translateY(-150%);
+  border-radius: 999px;
+  background: #c8102e;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  color: #fff;
 }
 
-dialog::backdrop {
-  background: rgb(19 53 103 / 0.72);
+.skip-link:focus {
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

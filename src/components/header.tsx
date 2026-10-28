@@ -1,95 +1,136 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@content/site";
-import { accentClass } from "@/components/brand";
 
 export function Header() {
   const pathname = usePathname();
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const open = menuPath === pathname;
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const menuId = useId();
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuPath(null);
-    };
-    window.addEventListener("keydown", onKey);
-    const previous = document.body.style.overflow;
+    const panel = panelRef.current;
+    const button = buttonRef.current;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    const focusable = () => {
+      const nodes = panel?.querySelectorAll<HTMLElement>("a[href], button") ?? [];
+      return [button, ...nodes].filter((node): node is HTMLElement => Boolean(node));
+    };
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuPath(null);
+        button?.focus();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    panel?.querySelector<HTMLElement>("a[href]")?.focus();
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previous;
+      document.body.style.overflow = previousOverflow;
     };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-hm-blue text-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-20 sm:px-5 md:h-24 md:px-6">
-        <Link href="/" className="flex min-w-0 shrink items-center">
+    <header className="sticky top-0 z-40 bg-hm-navy text-white">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <Image
-            src="/images/logo-nav.png"
-            alt="Hearts & Minds Programme"
-            width={1699}
-            height={1051}
-            preload
-            className="h-12 w-auto max-w-[58vw] sm:h-16 sm:max-w-none md:h-20"
+            src="/images/logo-mark.webp"
+            alt=""
+            width={640}
+            height={305}
+            className="h-10 w-auto shrink-0 sm:h-11"
             style={{ width: "auto" }}
           />
+          <span className="min-w-0 leading-tight">
+            <span className="block font-display text-base font-medium whitespace-nowrap sm:text-lg">Hearts and Minds</span>
+            <span className="hidden truncate text-xs tracking-wide text-white/70 sm:block">Inter Agency Task Force</span>
+          </span>
         </Link>
-        <nav aria-label="Primary" className="hidden min-w-0 items-center gap-x-4 text-sm font-semibold xl:gap-x-5 lg:flex">
-          {site.nav.map((item) => {
-            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`border-b-2 py-1 whitespace-nowrap ${active ? "border-hm-red" : "border-transparent hover:border-white/60"}`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="flex items-center gap-2">
-          <Link href="/get-involved" className={`${accentClass} shrink-0 whitespace-nowrap px-4 max-lg:hidden`}>
-            Get Involved
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href="/get-involved"
+            className="hidden min-h-11 items-center justify-center rounded-full bg-hm-red px-5 text-sm font-semibold text-white hover:bg-hm-red-dark sm:inline-flex"
+          >
+            Get involved
           </Link>
           <button
+            ref={buttonRef}
             type="button"
-            className="min-h-11 shrink-0 rounded-full px-3 text-sm font-semibold lg:hidden"
+            className="inline-flex min-h-11 items-center rounded-full px-3 text-sm font-semibold lg:hidden"
             aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-controls={menuId}
             onClick={() => setMenuPath(open ? null : pathname)}
           >
             {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>
-      {open ? (
-        <nav
-          id="mobile-menu"
-          aria-label="Mobile"
-          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/15 bg-hm-blue-dark px-4 py-2 sm:max-h-[calc(100dvh-5rem)] lg:hidden"
-        >
-          <ul>
-            {site.nav.map((item) => (
-              <li key={item.href}>
+      <nav aria-label="Primary" className="hidden border-t border-white/10 lg:block">
+        <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 sm:px-6">
+          {site.nav.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <li key={item.href} className="shrink-0">
                 <Link
                   href={item.href}
-                  className="flex min-h-12 items-center border-b border-white/10 text-lg font-semibold"
-                  onClick={() => setMenuPath(null)}
+                  aria-current={active ? "page" : undefined}
+                  className={`inline-flex min-h-11 items-center border-b-2 px-2 text-sm font-semibold ${
+                    active ? "border-hm-red text-white" : "border-transparent text-white/80 hover:text-white"
+                  }`}
                 >
                   {item.label}
                 </Link>
               </li>
-            ))}
-          </ul>
-        </nav>
+            );
+          })}
+        </ul>
+      </nav>
+      {open ? (
+        <div ref={panelRef} id={menuId} className="min-h-[calc(100dvh-4rem)] border-t border-white/10 bg-hm-navy lg:hidden">
+          <nav aria-label="Mobile" className="max-h-[calc(100dvh-4rem)] overflow-y-auto px-4 py-2">
+            <ul>
+              {site.nav.map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className="flex min-h-12 items-center border-b border-white/10 text-lg font-semibold"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
       ) : null}
     </header>
   );
