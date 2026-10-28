@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { communityNotes, howNotes, recommendation, youthNotes } from "@content/activity";
+import { flagshipDetail } from "@content/flagship-detail";
 import { site } from "@content/site";
 import {
   community,
@@ -172,17 +173,23 @@ export function FlagshipSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
         </Title>
         <p className="mt-5 max-w-2xl text-pretty text-hm-muted">{flagshipThemes}</p>
         <ol className="mt-10 divide-y divide-hm-line border-y border-hm-line">
-          {flagships.map((item) => (
-            <li key={item.slug}>
-              <Link href={`/programmes/${item.slug}`} className="grid gap-3 py-6 md:grid-cols-[5rem_1fr] md:gap-8">
-                <span className="font-display text-3xl text-hm-red">{item.number}</span>
-                <span>
-                  <span className="block font-display text-2xl text-hm-navy">{item.name}</span>
-                  <span className="mt-2 block max-w-3xl leading-relaxed text-pretty text-hm-muted">{item.text}</span>
-                </span>
-              </Link>
-            </li>
-          ))}
+          {flagships.map((item) => {
+            const teaser = flagshipDetail(item.slug)?.teaser;
+            return (
+              <li key={item.slug}>
+                <Link href={`/programmes/${item.slug}`} className="grid gap-3 py-6 md:grid-cols-[5rem_1fr] md:gap-8">
+                  <span className="font-display text-3xl text-hm-red">{item.number}</span>
+                  <span>
+                    <span className="block font-display text-2xl text-hm-navy">{item.name}</span>
+                    <span className="mt-2 block max-w-3xl leading-relaxed text-pretty text-hm-muted">{item.text}</span>
+                    {teaser ? (
+                      <span className="mt-2 block max-w-3xl text-sm leading-relaxed text-pretty text-hm-navy">{teaser}</span>
+                    ) : null}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>
@@ -408,7 +415,8 @@ export function PartnersSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
             </li>
           ))}
         </ul>
-        <p className="mt-10 max-w-3xl border-l-4 border-hm-red pl-5 text-lg leading-relaxed text-pretty">{partners.funding}</p>
+        <p className="mt-8 max-w-3xl leading-relaxed text-pretty">{partners.named}</p>
+        <p className="mt-6 max-w-3xl border-l-4 border-hm-red pl-5 text-lg leading-relaxed text-pretty">{partners.funding}</p>
       </div>
     </section>
   );

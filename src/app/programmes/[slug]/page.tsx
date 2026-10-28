@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { storiesBySlug } from "@content/activity";
 import { flagshipThemes, flagships } from "@content/story";
 import { accentClass } from "@/components/brand";
-import { PageNotes } from "@/components/page-notes";
+import { FlagshipEnrichment } from "@/components/flagship-enrichment";
 
 export function generateStaticParams() {
   return flagships.map((item) => ({ slug: item.slug }));
@@ -35,13 +34,6 @@ async function Flagship({ params }: { params: Promise<{ slug: string }> }) {
   const index = flagships.findIndex((entry) => entry.slug === slug);
   const previous = flagships[index - 1];
   const next = flagships[index + 1];
-  const related = storiesBySlug(
-    item.slug === "pycc"
-      ? ["pycc-south-east", "youth-empowerment-graduation"]
-      : item.slug === "fades-and-braids"
-        ? ["fades-and-braids-outings"]
-        : [],
-  );
 
   return (
     <article>
@@ -54,20 +46,10 @@ async function Flagship({ params }: { params: Promise<{ slug: string }> }) {
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6">
         <p className="text-xl leading-relaxed text-pretty">{item.text}</p>
         <p className="mt-6 text-hm-muted">Across the ten flagship initiatives: {flagshipThemes}</p>
-        <Link href="/get-involved" className={`${accentClass} mt-8`}>
+        <FlagshipEnrichment slug={item.slug} />
+        <Link href="/get-involved" className={`${accentClass} mt-10`}>
           Support this work
         </Link>
-        {related.length > 0 ? (
-          <PageNotes
-            stories={related}
-            titleAs="h2"
-            intro={
-              item.slug === "fades-and-braids"
-                ? "The description above is the programme account, including the clinic on the Brian Lara Promenade. The page notes below are separate, and they do not give a date. The photographs do not label a location as Maracas Bay."
-                : "These notes add detail from the Hearts & Minds page. They sit with this initiative."
-            }
-          />
-        ) : null}
       </div>
       <nav aria-label="Other flagship initiatives" className="border-t border-hm-line bg-white">
         <div className="mx-auto grid max-w-6xl gap-3 px-5 py-8 sm:grid-cols-2 sm:px-6">

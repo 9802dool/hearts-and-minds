@@ -316,6 +316,8 @@ export const partners = {
     "Business community",
     "Concerned citizens",
   ],
+  named:
+    "The Rotary Club of Central Port of Spain is a partner of Beetham Vibrations Steel Orchestra, Aspiring Stars of Laventille and the Primary School Spelling Bee.",
   funding:
     "The programme has no dedicated funding. Projects rely on officers’ personal contributions, internal fundraising and stakeholder sponsorship.",
 };
