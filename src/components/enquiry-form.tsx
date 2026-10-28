@@ -56,11 +56,11 @@ export function EnquiryForm() {
       formEl.reset();
       setNotice(
         result.emailed === false
-          ? `Thank you. Email from this form is not switched on yet, so please also write through the Hearts and Minds Facebook page.`
+          ? `Thank you. Email from this form is not switched on yet. Please call ${site.phoneDisplay} or write to ${site.email}.`
           : "Thank you. Your message has been sent to the Hearts and Minds Programme.",
       );
     } catch {
-      setNotice("The message could not be sent. Please try again, or use the Facebook page.");
+      setNotice(`The message could not be sent. Please call ${site.phoneDisplay} or write to ${site.email}.`);
     } finally {
       setPending(false);
     }

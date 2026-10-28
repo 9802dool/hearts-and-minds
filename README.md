@@ -17,7 +17,7 @@ The pages follow the programme briefing, in this order:
 11. Partnership and funding
 12. How to sponsor, contribute or partner
 
-Copy stays with that briefing. Do not add statistics, names or contact details that are not in it.
+Programme copy stays with that briefing. The public address, phone, email, and follower count are the details published on the Hearts and Minds Facebook page.
 
 ## Run it locally
 
@@ -33,7 +33,7 @@ Open http://localhost:3000.
 
 | What | Where |
 | --- | --- |
-| Name, tagline, navigation, Facebook page | `content/site.ts` |
+| Name, tagline, navigation, address, phone, email, Facebook page | `content/site.ts` |
 | Section copy | `content/story.ts` |
 
 ## Photographs

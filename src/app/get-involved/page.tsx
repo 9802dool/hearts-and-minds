@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { partners, nextChapter } from "@content/story";
+import { ContactDetails } from "@/components/contact-details";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PageIntro } from "@/components/page-intro";
 import { ChapterPager } from "@/components/pager";
@@ -13,6 +14,12 @@ export default function GetInvolvedPage() {
   return (
     <>
       <PageIntro kicker={nextChapter.kicker} title={nextChapter.title} lede={partners.funding} />
+      <section id="contact" className="scroll-mt-32 border-b border-hm-line bg-white">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-6 md:grid-cols-[16rem_1fr] md:items-start">
+          <h2 className="font-display text-3xl font-medium text-hm-navy">Contact</h2>
+          <ContactDetails />
+        </div>
+      </section>
       <section className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <h2 className="font-display text-3xl font-medium text-hm-navy">Three ways to help</h2>

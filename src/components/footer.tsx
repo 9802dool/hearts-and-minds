@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@content/site";
+import { ContactDetails } from "@/components/contact-details";
 
 export function Footer() {
   return (
@@ -35,18 +36,10 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-xs font-semibold tracking-[0.18em] text-white/60 uppercase">Public page</p>
-          <p className="mt-4 text-sm leading-relaxed text-white/80">
-            The programme’s public updates are posted on Facebook.
-          </p>
-          <a
-            href={site.facebook}
-            className="mt-3 inline-flex min-h-11 items-center font-semibold underline decoration-white/40 underline-offset-4 hover:decoration-white"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Hearts and Minds on Facebook
-          </a>
+          <p className="text-xs font-semibold tracking-[0.18em] text-white/60 uppercase">Contact</p>
+          <div className="mt-4">
+            <ContactDetails />
+          </div>
           <p className="mt-6 text-sm leading-relaxed text-white/75">{site.emergency}</p>
         </div>
       </div>

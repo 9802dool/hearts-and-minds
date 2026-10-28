@@ -48,13 +48,21 @@ export const metadata: Metadata = {
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "NGO",
   name: site.name,
-  alternateName: ["HMP", "Hearts & Minds Programme"],
+  alternateName: ["HMP", site.publicName, "Hearts & Minds Programme"],
   slogan: site.tagline,
   url,
   description: site.description,
+  email: site.email,
+  telephone: site.phoneTel,
   foundingDate: "2006-05-15",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${site.address.street}, ${site.address.locality}`,
+    addressLocality: site.address.city,
+    addressCountry: "TT",
+  },
   parentOrganization: {
     "@type": "GovernmentOrganization",
     name: site.parent,

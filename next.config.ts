@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   async redirects() {
     return [
-      { source: "/contact", destination: "/get-involved", permanent: false },
+      { source: "/contact", destination: "/get-involved#contact", permanent: false },
       { source: "/news", destination: "/", permanent: false },
       { source: "/news/:slug", destination: "/", permanent: false },
       { source: "/events", destination: "/programmes", permanent: false },
