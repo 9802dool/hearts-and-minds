@@ -41,7 +41,7 @@ export function PageNotes({
                     alt={photo.alt}
                     width={photo.width}
                     height={photo.height}
-                    className="aspect-[4/3] w-full rounded-md object-cover"
+                    className="h-auto w-full rounded-md"
                     sizes="(min-width: 768px) 30vw, 100vw"
                   />
                 ) : null}
@@ -76,7 +76,7 @@ export function PageNotes({
                         alt={photo.alt}
                         width={photo.width}
                         height={photo.height}
-                        className="h-auto w-full rounded-md object-cover"
+                        className="h-auto w-full rounded-md"
                         sizes="(min-width: 640px) 40vw, 100vw"
                       />
                     </li>
