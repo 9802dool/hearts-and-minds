@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { communityNotes, howNotes, recommendation, youthNotes } from "@content/activity";
 import { site } from "@content/site";
 import {
   community,
@@ -18,6 +19,7 @@ import {
   youth,
 } from "@content/story";
 import { accentClass, buttonClass } from "@/components/brand";
+import { PageNotes } from "@/components/page-notes";
 
 function Kicker({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-semibold tracking-[0.2em] text-hm-red uppercase">{children}</p>;
@@ -84,6 +86,15 @@ export function WhySection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
           </Title>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty">{why.origin}</p>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-pretty">{why.mission}</p>
+          <figure className="mt-8 max-w-2xl border-l-4 border-hm-red pl-5">
+            <blockquote>
+              <p className="text-lg leading-relaxed text-pretty">“{recommendation.quote}”</p>
+            </blockquote>
+            <figcaption className="mt-3 text-sm text-hm-muted">
+              <span className="font-semibold text-hm-navy">{recommendation.name}</span>
+              <span className="mt-1 block">{recommendation.detail}</span>
+            </figcaption>
+          </figure>
         </div>
         <div className="flex flex-col justify-between gap-8 border-t border-hm-line pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-10">
           <blockquote>
@@ -124,6 +135,7 @@ export function HowSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
           <span className="font-semibold text-hm-navy">Alongside the programme: </span>
           {how.with}
         </p>
+        <PageNotes stories={howNotes} />
       </div>
     </section>
   );
@@ -201,7 +213,7 @@ export function EducationSection({ heading = "h2" }: { heading?: "h1" | "h2" }) 
   );
 }
 
-export function YouthSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
+export function YouthSection({ heading = "h2", notes = "brief" }: { heading?: "h1" | "h2"; notes?: "brief" | "full" }) {
   return (
     <section id={youth.id} aria-labelledby="youth-title" className="scroll-mt-32 bg-hm-paper">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:py-24">
@@ -225,6 +237,14 @@ export function YouthSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
             </article>
           ))}
         </div>
+        <PageNotes
+          stories={youthNotes}
+          mode={notes}
+          id={notes === "full" ? "community-page" : undefined}
+          intro="These notes from the Hearts & Minds page belong with the youth work. Where a post gave no date, none is added."
+          moreHref={notes === "brief" ? "/youth#community-page" : undefined}
+          moreLabel={notes === "brief" ? "Read these notes with the youth clubs" : undefined}
+        />
       </div>
     </section>
   );
@@ -367,6 +387,7 @@ export function CommunitySection({ heading = "h2" }: { heading?: "h1" | "h2" }) 
             </article>
           ))}
         </div>
+        <PageNotes stories={communityNotes} />
       </div>
     </section>
   );
