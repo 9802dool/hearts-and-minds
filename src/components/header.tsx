@@ -111,7 +111,7 @@ export function Header() {
         </ul>
       </nav>
       {open ? (
-        <div ref={panelRef} id={menuId} className="min-h-[calc(100dvh-4rem)] border-t border-white/10 bg-hm-navy lg:hidden">
+        <div ref={panelRef} id={menuId} className="min-h-[calc(100dvh-4rem)] border-t border-white/10 bg-hm-navy-2 lg:hidden">
           <nav aria-label="Mobile" className="max-h-[calc(100dvh-4rem)] overflow-y-auto px-4 py-2">
             <ul>
               {site.nav.map((item) => {

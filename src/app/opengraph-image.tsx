@@ -13,12 +13,12 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          background: "#101820",
-          color: "#f6f3ee",
+          background: "#1d4c92",
+          color: "#ffffff",
           padding: "72px",
         }}
       >
-        <div style={{ fontSize: 22, letterSpacing: "0.18em", textTransform: "uppercase", color: "#c8102e" }}>
+        <div style={{ fontSize: 22, letterSpacing: "0.18em", textTransform: "uppercase", color: "#eb1112" }}>
           Inter Agency Task Force
         </div>
         <div style={{ fontSize: 68, fontWeight: 600, lineHeight: 1.05, marginTop: 20, maxWidth: 900 }}>
