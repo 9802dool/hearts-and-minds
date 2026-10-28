@@ -14,7 +14,7 @@ export function FlagshipEnrichment({ slug }: { slug: string }) {
       ))}
       {detail.highlights.length > 0 ? (
         <>
-          <h2 className="mt-10 font-display text-3xl text-hm-navy">{detail.heading ?? "Highlights"}</h2>
+          <h3 className="mt-10 font-display text-3xl text-hm-navy">{detail.heading ?? "Highlights"}</h3>
           <ol className="mt-6 border-l border-hm-line">
             {detail.highlights.map((item) => (
               <li key={item.when} className="relative pb-8 pl-6 last:pb-0">
@@ -49,6 +49,7 @@ export function FlagshipEnrichment({ slug }: { slug: string }) {
                 }
                 sizes={detail.photos && detail.photos.length > 1 ? "(min-width: 640px) 360px, 100vw" : "(min-width: 640px) 576px, 100vw"}
               />
+              {photo.caption ? <p className="mt-2 text-sm leading-relaxed text-hm-muted">{photo.caption}</p> : null}
             </li>
           ))}
         </ul>

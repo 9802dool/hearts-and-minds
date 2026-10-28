@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { partners, nextChapter } from "@content/story";
+import { nextChapter } from "@content/story";
 import { ContactDetails } from "@/components/contact-details";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PageIntro } from "@/components/page-intro";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function GetInvolvedPage() {
   return (
     <>
-      <PageIntro kicker={nextChapter.kicker} title={nextChapter.title} lede={partners.funding} />
+      <PageIntro kicker={nextChapter.kicker} title={nextChapter.title} />
       <section id="contact" className="scroll-mt-32 border-b border-hm-line bg-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-6 md:grid-cols-[16rem_1fr] md:items-start">
           <h2 className="font-display text-3xl font-medium text-hm-navy">Contact</h2>

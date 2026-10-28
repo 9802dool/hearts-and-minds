@@ -187,11 +187,7 @@ export function storiesBySlug(slugs: readonly string[]) {
   });
 }
 
-export const youthNotes = storiesBySlug([
-  "youth-empowerment-graduation",
-  "pycc-south-east",
-  "empowering-the-next-generation",
-]);
+export const youthNotes = storiesBySlug(["empowering-the-next-generation"]);
 
 export const howNotes = storiesBySlug(["community-engagement-john-john"]);
 

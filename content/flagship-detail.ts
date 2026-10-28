@@ -3,6 +3,7 @@ export type FlagshipPhoto = {
   alt: string;
   width: number;
   height: number;
+  caption?: string;
 };
 
 export type FlagshipHighlight = {
@@ -205,7 +206,7 @@ export const flagshipDetails: FlagshipDetail[] = [
       {
         when: "3 October 2026",
         dateTime: "2026-10-03",
-        text: "A camp craft session at South East Port of Spain Secondary.",
+        text: "A camp craft session at South East Port of Spain Secondary, led by PC Mc Pherson and WPC Mottley-Allsop.",
       },
       {
         when: "24 October 2026",
@@ -220,12 +221,35 @@ export const flagshipDetails: FlagshipDetail[] = [
         alt: "Officers in uniform and young people in white shirts stand with their heads bowed in a meeting room at the Youth Empowerment and Development Programme graduation.",
         width: 1600,
         height: 900,
+        caption: "Graduation at the US American Center, 24 October 2026.",
+      },
+      {
+        src: "/images/activity/graduation-podium.webp",
+        alt: "A young man speaks at a United States Department of State lectern, with the United States flag and the flag of Trinidad and Tobago behind him.",
+        width: 1600,
+        height: 1280,
+        caption: "Graduation at the US American Center, 24 October 2026.",
       },
       {
         src: "/images/activity/pycc-circle.webp",
         alt: "Young people and officers stand in a circle holding hands in a school hall. The officer nearest the camera wears a shirt reading Mc Pherson.",
         width: 1600,
         height: 1200,
+        caption: "A session at South East Port of Spain Secondary.",
+      },
+      {
+        src: "/images/activity/pycc-drill.webp",
+        alt: "Young people hold a hands-and-knees exercise on a hall floor while an officer in a Mc Pherson shirt and two women look on.",
+        width: 1600,
+        height: 900,
+        caption: "A session at South East Port of Spain Secondary.",
+      },
+      {
+        src: "/images/activity/pycc-clipboard.webp",
+        alt: "In a school hall marked S.E.P.O.S., two young women and two officers look at a clipboard. One shirt refers to progressive youth and reads “change starts with me.”",
+        width: 1600,
+        height: 1225,
+        caption: "A session at South East Port of Spain Secondary.",
       },
     ],
   },

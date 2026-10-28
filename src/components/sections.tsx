@@ -1,17 +1,13 @@
 import Link from "next/link";
 import { communityNotes, howNotes, recommendation, youthNotes } from "@content/activity";
-import { flagshipDetail } from "@content/flagship-detail";
-import { site } from "@content/site";
 import {
   community,
   education,
-  flagshipThemes,
   flagships,
   homeContents,
   how,
   impact,
   intervention,
-  nextChapter,
   partners,
   relief,
   sport,
@@ -19,7 +15,7 @@ import {
   work,
   youth,
 } from "@content/story";
-import { accentClass, buttonClass } from "@/components/brand";
+import { accentClass } from "@/components/brand";
 import { PageNotes } from "@/components/page-notes";
 
 function Kicker({ children }: { children: React.ReactNode }) {
@@ -52,24 +48,58 @@ function Title({
 
 export function HomeContents() {
   return (
-    <nav aria-label="On this page" className="border-b border-hm-line bg-white">
+    <nav id="briefing" aria-label="Briefing chapters" className="scroll-mt-32 border-b border-hm-line bg-white">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6">
         <h2 className="font-display text-3xl font-medium text-hm-navy">The briefing</h2>
         <p className="mt-3 max-w-2xl text-pretty text-hm-muted">
           The programme, in the order it is told: from why it exists to how a person or organisation can stand with it.
+          Each chapter is set out on its own page.
         </p>
         <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {homeContents.map((item, index) => (
-            <li key={item.href}>
-              <Link href={item.href} className="block h-full rounded-md border border-hm-line px-4 py-4 hover:border-hm-navy">
-                <span className="text-xs font-semibold tracking-[0.16em] text-hm-red">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="mt-2 block font-display text-xl text-hm-navy">{item.label}</span>
-                <span className="mt-1 block text-sm leading-relaxed text-hm-muted">{item.note}</span>
-              </Link>
-            </li>
-          ))}
+          {homeContents.map((item, index) => {
+            const number = String(index + 1).padStart(2, "0");
+            if (item.href === "/initiatives") {
+              return (
+                <li key={item.href} className="sm:col-span-2 lg:col-span-3">
+                  <div className="rounded-md border border-hm-line px-4 py-4">
+                    <p className="text-xs font-semibold tracking-[0.16em] text-hm-red">{number}</p>
+                    <h3 className="mt-2 font-display text-xl text-hm-navy">
+                      <Link href="/initiatives" className="underline decoration-hm-line underline-offset-4 hover:decoration-hm-navy">
+                        {item.label}
+                      </Link>
+                    </h3>
+                    <p className="mt-1 max-w-2xl text-sm leading-relaxed text-hm-muted">{item.note}</p>
+                    <ol className="mt-4 grid gap-2 sm:grid-cols-2">
+                      {flagships.map((initiative) => (
+                        <li key={initiative.slug}>
+                          <Link
+                            href={`/initiatives#${initiative.slug}`}
+                            className="text-sm font-semibold text-hm-navy underline decoration-transparent underline-offset-4 hover:decoration-hm-navy"
+                          >
+                            <span className="text-hm-red">{initiative.number}</span> {initiative.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ol>
+                    <p className="mt-5">
+                      <Link href="/initiatives" className={accentClass}>
+                        Read the ten initiatives
+                      </Link>
+                    </p>
+                  </div>
+                </li>
+              );
+            }
+            return (
+              <li key={item.href}>
+                <Link href={item.href} className="block h-full rounded-md border border-hm-line px-4 py-4 hover:border-hm-navy">
+                  <span className="text-xs font-semibold tracking-[0.16em] text-hm-red">{number}</span>
+                  <span className="mt-2 block font-display text-xl text-hm-navy">{item.label}</span>
+                  <span className="mt-1 block text-sm leading-relaxed text-hm-muted">{item.note}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </nav>
@@ -107,7 +137,7 @@ export function WhySection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
           </p>
           <p>
             <span className="block font-display text-4xl text-hm-navy">{why.year}</span>
-            <span className="mt-1 block text-sm font-semibold text-hm-muted">Initiated 15 May 2006</span>
+            <span className="mt-1 block text-sm font-semibold text-hm-muted">Year initiated</span>
           </p>
         </div>
       </div>
@@ -132,10 +162,6 @@ export function HowSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
             </li>
           ))}
         </ol>
-        <p className="mt-10 max-w-3xl text-pretty">
-          <span className="font-semibold text-hm-navy">Alongside the programme: </span>
-          {how.with}
-        </p>
         <PageNotes stories={howNotes} />
       </div>
     </section>
@@ -158,39 +184,12 @@ export function WorkSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
             </li>
           ))}
         </ol>
-      </div>
-    </section>
-  );
-}
-
-export function FlagshipSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
-  return (
-    <section id="flagships" aria-labelledby="flagships-title" className="scroll-mt-32 bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:py-24">
-        <Kicker>Flagship initiatives</Kicker>
-        <Title as={heading} id="flagships-title">
-          Ten initiatives carry the work into schools, homes and public life.
-        </Title>
-        <p className="mt-5 max-w-2xl text-pretty text-hm-muted">{flagshipThemes}</p>
-        <ol className="mt-10 divide-y divide-hm-line border-y border-hm-line">
-          {flagships.map((item) => {
-            const teaser = flagshipDetail(item.slug)?.teaser;
-            return (
-              <li key={item.slug}>
-                <Link href={`/programmes/${item.slug}`} className="grid gap-3 py-6 md:grid-cols-[5rem_1fr] md:gap-8">
-                  <span className="font-display text-3xl text-hm-red">{item.number}</span>
-                  <span>
-                    <span className="block font-display text-2xl text-hm-navy">{item.name}</span>
-                    <span className="mt-2 block max-w-3xl leading-relaxed text-pretty text-hm-muted">{item.text}</span>
-                    {teaser ? (
-                      <span className="mt-2 block max-w-3xl text-sm leading-relaxed text-pretty text-hm-navy">{teaser}</span>
-                    ) : null}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
+        <p className="mt-8 max-w-3xl leading-relaxed text-pretty text-hm-muted">
+          <Link href="/initiatives" className="font-semibold text-hm-navy underline decoration-hm-line underline-offset-4">
+            The ten flagship initiatives
+          </Link>{" "}
+          are set out on their own page.
+        </p>
       </div>
     </section>
   );
@@ -220,7 +219,7 @@ export function EducationSection({ heading = "h2" }: { heading?: "h1" | "h2" }) 
   );
 }
 
-export function YouthSection({ heading = "h2", notes = "brief" }: { heading?: "h1" | "h2"; notes?: "brief" | "full" }) {
+export function YouthSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
   return (
     <section id={youth.id} aria-labelledby="youth-title" className="scroll-mt-32 bg-hm-paper">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:py-24">
@@ -244,13 +243,16 @@ export function YouthSection({ heading = "h2", notes = "brief" }: { heading?: "h
             </article>
           ))}
         </div>
+        <p className="mt-8 max-w-3xl leading-relaxed text-pretty text-hm-muted">
+          <Link href="/initiatives#pycc" className="font-semibold text-hm-navy underline decoration-hm-line underline-offset-4">
+            PYCC — Progressive Youths Creating Change
+          </Link>{" "}
+          is a flagship initiative. Its school sessions and graduation are set out there.
+        </p>
         <PageNotes
           stories={youthNotes}
-          mode={notes}
-          id={notes === "full" ? "community-page" : undefined}
-          intro="These notes from the Hearts & Minds page belong with the youth work. Where a post gave no date, none is added."
-          moreHref={notes === "brief" ? "/youth#community-page" : undefined}
-          moreLabel={notes === "brief" ? "Read these notes with the youth clubs" : undefined}
+          id="community-page"
+          intro="This note from the Hearts & Minds page belongs with the youth work. The post gave no date."
         />
       </div>
     </section>
@@ -297,7 +299,15 @@ export function ReliefSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
           <div className="grid gap-6 sm:grid-cols-2">
             {relief.items.map((item) => (
               <article key={item.title}>
-                <h3 className="font-display text-2xl text-hm-navy">{item.title}</h3>
+                <h3 className="font-display text-2xl text-hm-navy">
+                  {item.href ? (
+                    <Link href={item.href} className="underline decoration-hm-line underline-offset-4 hover:decoration-hm-navy">
+                      {item.title}
+                    </Link>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
                 <p className="mt-2 leading-relaxed text-pretty text-hm-muted">{item.text}</p>
               </article>
             ))}
@@ -320,18 +330,24 @@ export function SportSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
           {sport.items.map((item) => (
             <article key={item.title} className="rounded-md bg-hm-paper p-5">
               <p className="text-sm font-semibold tracking-wide text-hm-red">{item.marker}</p>
-              <h3 className="mt-3 font-display text-2xl text-hm-navy">{item.title}</h3>
+              <h3 className="mt-3 font-display text-2xl text-hm-navy">
+                {item.title === "Primary School Football Tournament" ? (
+                  <Link
+                    href="/initiatives#primary-school-football"
+                    className="underline decoration-hm-line underline-offset-4 hover:decoration-hm-navy"
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  item.title
+                )}
+              </h3>
               <p className="mt-2 leading-relaxed text-pretty text-hm-muted">{item.text}</p>
             </article>
           ))}
         </div>
         <p className="mt-8 text-sm leading-relaxed text-hm-muted">
           Also named alongside this work: {sport.alongside.join(" · ")}
-        </p>
-        <p className="mt-4">
-          <Link href="/programmes/primary-school-football" className="font-semibold text-hm-navy underline decoration-hm-line underline-offset-4">
-            Read about the Primary School Football Tournament
-          </Link>
         </p>
       </div>
     </section>
@@ -417,36 +433,6 @@ export function PartnersSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
         </ul>
         <p className="mt-8 max-w-3xl leading-relaxed text-pretty">{partners.named}</p>
         <p className="mt-6 max-w-3xl border-l-4 border-hm-red pl-5 text-lg leading-relaxed text-pretty">{partners.funding}</p>
-      </div>
-    </section>
-  );
-}
-
-export function CloseSection() {
-  return (
-    <section id={nextChapter.id} aria-labelledby="next-title" className="scroll-mt-32 bg-hm-navy text-white">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:py-24">
-        <p className="text-xs font-semibold tracking-[0.2em] text-white/60 uppercase">{nextChapter.kicker}</p>
-        <h2 id="next-title" className="mt-3 max-w-3xl font-display text-4xl leading-tight font-medium text-balance sm:text-5xl">
-          {nextChapter.title}
-        </h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {nextChapter.asks.map((ask) => (
-            <article key={ask.title} className="border-t border-white/20 pt-4">
-              <h3 className="font-display text-2xl">{ask.title}</h3>
-              <p className="mt-2 leading-relaxed text-white/80">{ask.text}</p>
-            </article>
-          ))}
-        </div>
-        <p className="mt-10 font-display text-2xl text-white/90">{site.tagline}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link href="/get-involved" className={accentClass}>
-            Support the programme
-          </Link>
-          <Link href="/partners" className={`${buttonClass} bg-white text-hm-navy hover:bg-hm-paper`}>
-            Read about partnership
-          </Link>
-        </div>
       </div>
     </section>
   );

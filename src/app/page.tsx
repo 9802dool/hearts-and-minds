@@ -2,22 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@content/site";
 import { accentClass } from "@/components/brand";
-import {
-  CloseSection,
-  CommunitySection,
-  EducationSection,
-  FlagshipSection,
-  HomeContents,
-  HowSection,
-  ImpactSection,
-  InterventionSection,
-  PartnersSection,
-  ReliefSection,
-  SportSection,
-  WhySection,
-  WorkSection,
-  YouthSection,
-} from "@/components/sections";
+import { HomeContents } from "@/components/sections";
 
 export default function Home() {
   return (
@@ -43,7 +28,7 @@ export default function Home() {
           <p className="mt-2 text-sm font-semibold tracking-wide text-white/75">Initiated {site.initiated}</p>
           <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="#why" className={`${accentClass} w-full sm:w-auto`}>
+              <a href="#briefing" className={`${accentClass} w-full sm:w-auto`}>
                 Read the briefing
               </a>
               <Link
@@ -61,19 +46,6 @@ export default function Home() {
         </div>
       </section>
       <HomeContents />
-      <WhySection />
-      <HowSection />
-      <WorkSection />
-      <FlagshipSection />
-      <EducationSection />
-      <YouthSection />
-      <ImpactSection />
-      <ReliefSection />
-      <SportSection />
-      <InterventionSection />
-      <CommunitySection />
-      <PartnersSection />
-      <CloseSection />
     </>
   );
 }
