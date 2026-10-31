@@ -9,6 +9,8 @@ import {
   impact,
   intervention,
   partners,
+  programmesImpactPath,
+  programmesImpactSections,
   relief,
   sport,
   why,
@@ -53,7 +55,7 @@ export function HomeContents() {
         <h2 className="font-display text-3xl font-medium text-hm-navy">The briefing</h2>
         <p className="mt-3 max-w-2xl text-pretty text-hm-muted">
           The programme, in the order it is told: from why it exists to how a person or organisation can stand with it.
-          Each chapter is set out on its own page.
+          Use the main navigation for the five chapters; longer pages group related sections you can jump to below.
         </p>
         <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {homeContents.map((item, index) => {
@@ -413,6 +415,34 @@ export function CommunitySection({ heading = "h2" }: { heading?: "h1" | "h2" }) 
         <PageNotes stories={communityNotes} />
       </div>
     </section>
+  );
+}
+
+export function ProgrammesImpactContents() {
+  return (
+    <nav aria-label="Programmes and impact sections" className="scroll-mt-32 border-b border-hm-line bg-white">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6">
+        <h2 className="font-display text-2xl font-medium text-hm-navy">On this page</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-pretty text-hm-muted">
+          The briefing continues here in the same order as the presentation: programmes on the ground, proof of impact, and
+          the partners who make it possible.
+        </p>
+        <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {programmesImpactSections.map((item, index) => (
+            <li key={item.id}>
+              <Link
+                href={`${programmesImpactPath}#${item.id}`}
+                className="block h-full rounded-md border border-hm-line px-4 py-4 hover:border-hm-navy"
+              >
+                <span className="text-xs font-semibold tracking-[0.16em] text-hm-red">{String(index + 1).padStart(2, "0")}</span>
+                <span className="mt-2 block font-display text-lg text-hm-navy">{item.label}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-hm-muted">{item.note}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
   );
 }
 
