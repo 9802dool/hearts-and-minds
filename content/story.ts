@@ -335,18 +335,32 @@ export const nextChapter = {
   ],
 };
 
+export const programmesImpactPath = "/programmes-impact";
+
+export const programmesImpactSections = [
+  { id: work.id, label: "What we do", note: "Seven kinds of community support" },
+  { id: education.id, label: "Education reach", note: "48 schools and learning centres" },
+  { id: youth.id, label: "Youth clubs", note: "Three Police Youth Clubs" },
+  { id: impact.id, label: "Proof of possibility", note: "National and international stages" },
+  { id: relief.id, label: "Relief and resilience", note: "Health, housing, food and learning" },
+  { id: sport.id, label: "Sport as a bridge", note: "Tournaments, clinics and pathways" },
+  { id: intervention.id, label: "Early intervention", note: "School, home and parenting support" },
+  { id: community.id, label: "Community centre", note: "The Beetham Gardens JCSC" },
+  { id: partners.id, label: "Partnership", note: "Who stands with the work, and how it is funded" },
+] as const;
+
 export const homeContents = [
   { href: "/about#why", label: "Why we exist", note: "Origin, purpose and the 54 communities" },
   { href: "/about#how", label: "How we work", note: "Listen, connect and act" },
-  { href: "/programmes", label: "What we do", note: "Seven kinds of community support" },
+  { href: `${programmesImpactPath}#${work.id}`, label: "What we do", note: "Seven kinds of community support" },
   { href: "/initiatives", label: "Flagship initiatives", note: "Ten programmes, from Carnival to housing" },
-  { href: "/education", label: "Education reach", note: "48 schools and learning centres" },
-  { href: "/youth", label: "Youth clubs", note: "Three Police Youth Clubs" },
-  { href: "/impact", label: "Proof of possibility", note: "National and international stages" },
-  { href: "/relief", label: "Relief and resilience", note: "Health, housing, food and learning" },
-  { href: "/sport", label: "Sport as a bridge", note: "Tournaments, clinics and pathways" },
-  { href: "/intervention", label: "Early intervention", note: "School, home and parenting support" },
-  { href: "/community", label: "Community centre", note: "The Beetham Gardens JCSC" },
-  { href: "/partners", label: "Partnership", note: "Who stands with the work, and how it is funded" },
+  { href: `${programmesImpactPath}#${education.id}`, label: "Education reach", note: "48 schools and learning centres" },
+  { href: `${programmesImpactPath}#${youth.id}`, label: "Youth clubs", note: "Three Police Youth Clubs" },
+  { href: `${programmesImpactPath}#${impact.id}`, label: "Proof of possibility", note: "National and international stages" },
+  { href: `${programmesImpactPath}#${relief.id}`, label: "Relief and resilience", note: "Health, housing, food and learning" },
+  { href: `${programmesImpactPath}#${sport.id}`, label: "Sport as a bridge", note: "Tournaments, clinics and pathways" },
+  { href: `${programmesImpactPath}#${intervention.id}`, label: "Early intervention", note: "School, home and parenting support" },
+  { href: `${programmesImpactPath}#${community.id}`, label: "Community centre", note: "The Beetham Gardens JCSC" },
+  { href: `${programmesImpactPath}#${partners.id}`, label: "Partnership", note: "Who stands with the work, and how it is funded" },
   { href: "/get-involved", label: "The next chapter", note: "Sponsor, contribute or partner" },
 ];

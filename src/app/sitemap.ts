@@ -3,21 +3,7 @@ import { siteUrl } from "@content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const root = siteUrl();
-  const paths = [
-    "",
-    "/about",
-    "/programmes",
-    "/initiatives",
-    "/education",
-    "/youth",
-    "/impact",
-    "/relief",
-    "/sport",
-    "/intervention",
-    "/community",
-    "/partners",
-    "/get-involved",
-  ];
+  const paths = ["", "/about", "/initiatives", "/programmes-impact", "/get-involved"];
   return [
     ...paths.map((path) => ({
       url: `${root}${path}`,

@@ -93,7 +93,7 @@ export function Header() {
       <nav aria-label="Primary" className="hidden border-t border-white/10 lg:block">
         <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 sm:px-6">
           {site.nav.map((item) => {
-            const active = pathname === item.href;
+            const active = item.href === "/" ? pathname === "/" : pathname === item.href;
             return (
               <li key={item.href} className="shrink-0">
                 <Link
@@ -115,7 +115,7 @@ export function Header() {
           <nav aria-label="Mobile" className="max-h-[calc(100dvh-4rem)] overflow-y-auto px-4 py-2">
             <ul>
               {site.nav.map((item) => {
-                const active = pathname === item.href;
+                const active = item.href === "/" ? pathname === "/" : pathname === item.href;
                 return (
                   <li key={item.href}>
                     <Link
